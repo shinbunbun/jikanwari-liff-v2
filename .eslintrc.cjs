@@ -25,6 +25,7 @@ module.exports = {
   ignorePatterns: [".eslintrc.cjs"],
   rules: {
     "no-console": ["warn"],
+    "no-underscore-dangle": ["off"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
