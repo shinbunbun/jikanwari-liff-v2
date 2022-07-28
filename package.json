@@ -10,7 +10,13 @@
     "test": "jest --config ./jest.config.json",
     "test:watch": "npm run test -- --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "eslint:lint": "eslint --ext .js,.ts,.tsx src/",
+    "eslint:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
+    "prettier:lint": "prettier --check 'src/**/*.{js,ts,tsx}'",
+    "prettier:format": "prettier --write 'src/**/*.{js,ts,tsx}'",
+    "fmt": "npm run prettier:format && npm run eslint:fix",
+    "lint": "npm run eslint:lint && npm run prettier:lint"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -33,9 +39,19 @@
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
     "@vitejs/plugin-react": "^2.0.0",
     "babel-loader": "^8.2.5",
     "chromatic": "^6.7.1",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.7.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.0"
   }
