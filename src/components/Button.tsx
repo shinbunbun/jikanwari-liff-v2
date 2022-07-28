@@ -16,6 +16,7 @@ export const Button: VFC<ButtonProps> = ({ label, onClick }) => (
     _hover={{ bg: 'blue.600' }}
     _active={{ bg: 'blue.700' }}
     width="100%"
+    height="40px"
   >
     {label}
   </ChakraButton>
