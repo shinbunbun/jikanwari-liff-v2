@@ -10,7 +10,9 @@
     "test": "jest --config ./jest.config.json",
     "test:watch": "npm run test -- --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "eslint:lint": "eslint --ext .js,.ts,.tsx src/",
+    "eslint:fix": "eslint --ext .js,.ts,.tsx src/ --fix"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
