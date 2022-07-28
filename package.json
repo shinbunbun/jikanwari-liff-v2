@@ -12,7 +12,11 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "eslint:lint": "eslint --ext .js,.ts,.tsx src/",
-    "eslint:fix": "eslint --ext .js,.ts,.tsx src/ --fix"
+    "eslint:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
+    "prettier:lint": "prettier --check 'src/**/*.{js,ts,tsx}'",
+    "prettier:format": "prettier --write 'src/**/*.{js,ts,tsx}'",
+    "fmt": "npm run prettier:format && npm run eslint:fix",
+    "lint": "npm run eslint:lint && npm run prettier:lint"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
