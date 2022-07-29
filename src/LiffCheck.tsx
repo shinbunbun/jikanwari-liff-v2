@@ -1,5 +1,5 @@
-import { useLiffProfile } from './hooks/LiffProfile'
-import { useLiffObject } from './hooks/LiffProvider'
+import { useLiffProfile } from './hooks/useLiffProfile'
+import { useLiffObject } from './provider/LiffProvider'
 
 const LiffCheck = () => {
   const liff = useLiffObject()
