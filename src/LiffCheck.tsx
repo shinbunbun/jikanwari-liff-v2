@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import { LiffProvider, useLiffInit } from './hooks/liff'
+import liff from '@line/liff/dist/lib';
+import { useLiffInit } from './hooks/liff'
 
 function LiffCheck() {
-  const [count, setCount] = useState(0)
-
-  const liffObject = useLiffInit();
+  const liffObject = useLiffInit({ liffId: "dummy", mock: true });
   console.log(liffObject);
 
+  if (liffObject) {
+    if (!liff.isInClient()) liff.login();
+    const profile = liff.getProfile();
+    console.log(profile);
+  }
+
   return (
-    <LiffProvider>
-      <h1>Hello, LIFF</h1>
-    </LiffProvider>
+    <h1>Hello, LIFF</h1>
   )
 }
 

@@ -1,21 +1,18 @@
 import { Config } from "@liff/types";
 import { Liff } from "@line/liff";
-import React, { createContext, ReactElement, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { LiffMockPlugin } from '@line/liff-mock';
 
-export const liffConfig = ({ ...config }: Config): Config => { return config };
+const liffMock = (liff: Liff) => liff.use(new LiffMockPlugin());
 
-const LiffContext = createContext({} as Liff);
-
-export const useLiffInit = () => {
+export const useLiffInit = ({ mock, liffId }: { mock: boolean, liffId: string }) => {
   const [liffObject, setLiffObject] = useState<Liff>();
-
-  const config = liffConfig({ liffId: "", withLoginOnExternalBrowser: true });
 
   useEffect(() => {
     const liff = async () => {
       const liff = await import("@line/liff") as unknown as Liff;
-      await liff.init(config);
+      if (mock) liffMock(liff);
+      await liff.init({ mock, liffId } as Config);
       setLiffObject(liff);
     };
     liff()
@@ -23,10 +20,3 @@ export const useLiffInit = () => {
 
   return liffObject;
 }
-
-export const LiffProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-
-  const liffObject = useLiffInit();
-
-  return <LiffContext.Provider value={liffObject as Liff}>{children}</LiffContext.Provider>;
-};
