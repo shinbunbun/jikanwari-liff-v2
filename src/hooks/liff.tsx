@@ -1,21 +1,29 @@
 import { Config } from "@liff/types";
-import { Liff } from "@line/liff";
+import liff, { Liff } from "@line/liff";
 import { createContext, useEffect, useState } from "react";
 import { LiffMockPlugin } from '@line/liff-mock';
 
 const liffMock = (liff: Liff) => liff.use(new LiffMockPlugin());
 
+export interface Profile {
+  userId: string;
+  displayName: string;
+  pictureUrl?: string;
+  statusMessage?: string;
+}
+
 export const useLiffInit = ({ mock, liffId }: { mock: boolean, liffId: string }) => {
   const [liffObject, setLiffObject] = useState<Liff>();
 
   useEffect(() => {
-    const liff = async () => {
-      const liff = await import("@line/liff") as unknown as Liff;
+    const liffInit = async () => {
+      // const liff = await import("@line/liff") as unknown as Liff;
       if (mock) liffMock(liff);
-      await liff.init({ mock, liffId } as Config);
+      await liff.init({ mock, liffId, withLoginOnExternalBrowser: true });
+      liff.login();
       setLiffObject(liff);
     };
-    liff()
+    liffInit()
   }, []);
 
   return liffObject;
