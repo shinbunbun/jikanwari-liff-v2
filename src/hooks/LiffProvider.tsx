@@ -1,5 +1,5 @@
 import liff, { Liff } from "@line/liff";
-import { useEffect, useState } from "react";
+import { useEffect, useState , createContext, useContext, ReactNode } from "react";
 import { LiffMockPlugin } from '@line/liff-mock';
 
 const liffMock = (liffInstance: Liff) => liffInstance.use(new LiffMockPlugin());
@@ -11,7 +11,10 @@ export interface Profile {
   statusMessage?: string;
 }
 
-export const useLiffInit = ({ mock, liffId }: { mock: boolean, liffId: string }) => {
+const LiffContext = createContext<Liff>({} as Liff);
+export const useLiffObject = () => useContext(LiffContext);
+
+export const LiffProvider = ({ children, mock, liffId }: {children: ReactNode, mock: boolean, liffId: string }) => {
   const [liffObject, setLiffObject] = useState<Liff>();
 
   useEffect(() => {
@@ -26,21 +29,9 @@ export const useLiffInit = ({ mock, liffId }: { mock: boolean, liffId: string })
     liffInit()
   }, []);
 
-  return liffObject;
-}
-
-export const useLiffProfile = (liffInstance: Liff) => {
-  const [profile, setProfile] = useState<Profile>();
-
-  useEffect(() => {
-    if(!liffInstance) return;
-    const getProfile = async () => {
-      const userProfile = await liffInstance.getProfile();
-      setProfile(userProfile);
-    }
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    getProfile();
-  }, [liffInstance]);
-
-  return profile;
+  return (
+    <LiffContext.Provider value={ liffObject as Liff }>
+      {children}
+    </LiffContext.Provider>
+  );
 }

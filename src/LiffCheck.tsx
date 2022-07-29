@@ -1,8 +1,8 @@
-import { Liff } from '@line/liff';
-import { useLiffInit, useLiffProfile } from './hooks/liff'
+import { useLiffProfile } from './hooks/LiffProfile';
+import { useLiffObject } from './hooks/LiffProvider'
 
 const LiffCheck = () => {
-  const liff = useLiffInit({ liffId: "aaa", mock: true }) as Liff;
+  const liff = useLiffObject();
   const profile = useLiffProfile(liff);
   console.log(profile);
 
