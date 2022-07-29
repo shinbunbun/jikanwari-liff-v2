@@ -11,9 +11,9 @@ export const IconButton: VFC<IconButtonProps> = ({ onClick, icon }) => (
     bg="transparent"
     fontSize="24px"
     onClick={onClick}
-    minWidth="24px"
-    width="24px"
-    height="24px"
+    minWidth="32px"
+    width="32px"
+    height="32px"
     padding="0px"
   >
     {icon}
