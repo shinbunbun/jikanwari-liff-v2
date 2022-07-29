@@ -3,7 +3,7 @@ import liff, { Liff } from "@line/liff";
 import { createContext, useEffect, useState } from "react";
 import { LiffMockPlugin } from '@line/liff-mock';
 
-const liffMock = (liff: Liff) => liff.use(new LiffMockPlugin());
+const liffMock = (liffInstance: Liff) => liffInstance.use(new LiffMockPlugin());
 
 export interface Profile {
   userId: string;
@@ -27,4 +27,19 @@ export const useLiffInit = ({ mock, liffId }: { mock: boolean, liffId: string })
   }, []);
 
   return liffObject;
+}
+
+export const useLiffProfile = (liffInstance: Liff) => {
+  const [profile, setProfile] = useState<Profile>();
+
+  useEffect(() => {
+    if(!liffInstance) return;
+    const getProfile = async () => {
+      const userProfile = await liffInstance.getProfile();
+      setProfile(userProfile);
+    }
+    getProfile();
+  }, [liffInstance]);
+
+  return profile;
 }
