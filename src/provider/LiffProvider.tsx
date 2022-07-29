@@ -34,7 +34,7 @@ export const LiffProvider = ({
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     liffInit()
-  }, [])
+  }, [liffId, mock])
 
   return (
     <LiffContext.Provider value={liffObject as Liff}>

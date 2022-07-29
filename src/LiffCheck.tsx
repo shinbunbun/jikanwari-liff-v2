@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useLiffProfile } from './hooks/useLiffProfile'
 import { useTimeTable } from './hooks/useTimeTable'
 import { useLiffObject } from './provider/LiffProvider'
