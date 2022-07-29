@@ -1,6 +1,5 @@
-import { Config } from "@liff/types";
 import liff, { Liff } from "@line/liff";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LiffMockPlugin } from '@line/liff-mock';
 
 const liffMock = (liffInstance: Liff) => liffInstance.use(new LiffMockPlugin());
@@ -23,6 +22,7 @@ export const useLiffInit = ({ mock, liffId }: { mock: boolean, liffId: string })
       liff.login();
       setLiffObject(liff);
     };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     liffInit()
   }, []);
 
@@ -38,6 +38,7 @@ export const useLiffProfile = (liffInstance: Liff) => {
       const userProfile = await liffInstance.getProfile();
       setProfile(userProfile);
     }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     getProfile();
   }, [liffInstance]);
 
