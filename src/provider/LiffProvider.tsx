@@ -10,13 +10,6 @@ import { LiffMockPlugin } from '@line/liff-mock'
 
 const liffMock = (liffInstance: Liff) => liffInstance.use(new LiffMockPlugin())
 
-export interface Profile {
-  userId: string
-  displayName: string
-  pictureUrl?: string
-  statusMessage?: string
-}
-
 const LiffContext = createContext<Liff>({} as Liff)
 export const useLiffObject = () => useContext(LiffContext)
 
