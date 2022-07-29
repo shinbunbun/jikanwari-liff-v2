@@ -1,6 +1,12 @@
 import { Liff } from '@line/liff'
 import { useEffect, useState } from 'react'
-import { Profile } from '../provider/LiffProvider'
+
+export interface Profile {
+  userId: string
+  displayName: string
+  pictureUrl?: string
+  statusMessage?: string
+}
 
 export const useLiffProfile = (liffInstance: Liff) => {
   const [profile, setProfile] = useState<Profile>()
