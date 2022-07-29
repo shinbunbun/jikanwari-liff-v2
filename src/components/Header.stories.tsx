@@ -16,12 +16,10 @@ export default {
 } as ComponentMeta<typeof Header>
 
 const Template: ComponentStory<typeof Header> = () => {
-  const userIcon = (
-    <Avatar
-      src="https://avatars.githubusercontent.com/u/83107074?v=4"
-      name="eraser5th"
-    />
-  )
+  const user = {
+    name: 'eraser5th',
+    src: 'https://avatars.githubusercontent.com/u/83107074?v=4',
+  }
 
   return (
     <ChakraProvider>
@@ -31,7 +29,7 @@ const Template: ComponentStory<typeof Header> = () => {
             <IconButton icon={<HamburgerIcon />} />
             <Logo />
           </HStack>
-          <IconButton icon={userIcon} />
+          <IconButton icon={<Avatar src={user.src} name={user.name} />} />
         </HStack>
       </Header>
     </ChakraProvider>
