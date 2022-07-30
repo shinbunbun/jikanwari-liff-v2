@@ -6,7 +6,7 @@ type PageMainProps = {
 }
 
 export const PageMain: VFC<PageMainProps> = ({ children }) => (
-  <VStack paddingX="16px">
+  <VStack paddingX="16px" width="100%" maxWidth="600px">
     <VStack spacing="12px" width="100%">
       {children}
     </VStack>
