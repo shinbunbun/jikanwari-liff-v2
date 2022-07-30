@@ -6,7 +6,7 @@ type HeaderProps = {
 }
 
 export const Header: VFC<HeaderProps> = ({ children }) => (
-  <HStack height="52px" bg="white" boxShadow="md">
+  <HStack height="52px" bg="white" boxShadow="md" width="100%">
     {children}
   </HStack>
 )
