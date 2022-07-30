@@ -15,7 +15,7 @@ export interface TimeTable {
   wed: string
 }
 
-const getTimeTable = (userId: string) => {
+const getTimeTable = (userId: string): TimeTable => {
   // Todo: execute api
   const dummyTimeTable = {
     ID: userId,
@@ -30,7 +30,7 @@ const getTimeTable = (userId: string) => {
     tue: '【火曜日】\n1.数3\n2.数3\n3.現文\n4.コミュ英3\n5.国英選\n6.社数演',
     uuid: 'XXXXX',
     wed: '【水曜日】\n1.英表2\n2.体育\n3.理選\n4.数3\n5.数3\n6.LHR',
-  } as TimeTable
+  }
   return dummyTimeTable
 }
 
