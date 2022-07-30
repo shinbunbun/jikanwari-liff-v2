@@ -18,7 +18,31 @@ import {
 import Card, { CardBody, CardTitle } from '../components/Card'
 import { Button } from '../components/Button'
 
-export const HomePage: VFC = () => {
+const HomePageHeader = () => {
+  const liff = useLiffObject()
+  const profile = useLiffProfile(liff)
+
+  return (
+    <Header>
+      <HStack paddingX="16px" justifyContent="space-between" width="100%">
+        <HStack spacing="12px">
+          <IconButton icon={<HamburgerIcon />} />
+          <Logo />
+        </HStack>
+        <IconButton
+          icon={
+            <Avatar
+              src={profile?.pictureUrl || ''}
+              name={profile?.displayName || ''}
+            />
+          }
+        />
+      </HStack>
+    </Header>
+  )
+}
+
+const HomePageMain = () => {
   const liff = useLiffObject()
   const profile = useLiffProfile(liff)
 
@@ -60,54 +84,43 @@ export const HomePage: VFC = () => {
   ]
 
   return (
-    <VStack>
-      <Header>
-        <HStack paddingX="16px" justifyContent="space-between" width="100%">
-          <HStack spacing="12px">
-            <IconButton icon={<HamburgerIcon />} />
-            <Logo />
-          </HStack>
-          <IconButton
-            icon={
-              <Avatar
-                src={profile?.pictureUrl || ''}
-                name={profile?.displayName || ''}
-              />
-            }
+    <PageMain>
+      <HStack spacing="16px">
+        {tab.map((item) => (
+          <CircularButton
+            label={item.label}
+            theme={item.value === dayOfWeek ? 'blue' : 'white'}
+            onClick={() => setDayOfWeek(item.value)}
+            key={item.value}
           />
-        </HStack>
-      </Header>
-      <Box width="100%" height="40px" />
-      <PageMain>
-        <HStack spacing="16px">
-          {tab.map((item) => (
-            <CircularButton
-              label={item.label}
-              theme={item.value === dayOfWeek ? 'blue' : 'white'}
-              onClick={() => setDayOfWeek(item.value)}
-              key={item.value}
-            />
-          ))}
-        </HStack>
-        <Card>
-          <CardBody>ここに予定を入れる</CardBody>
-        </Card>
-        <Card>
-          <CardTitle title="備考" />
-          <CardBody>
-            {formatedTimeTable?.property
-              ? formatedTimeTable.property[
-                  dayOfWeek.substring(
-                    0,
-                    3
-                  ) as keyof typeof formatedTimeTable.property
-                ]
-              : ''}
-          </CardBody>
-        </Card>
-        <Button label="編集する" />
-      </PageMain>
-      <Box width="100%" height="40px" />
-    </VStack>
+        ))}
+      </HStack>
+      <Card>
+        <CardBody>ここに予定を入れる</CardBody>
+      </Card>
+      <Card>
+        <CardTitle title="備考" />
+        <CardBody>
+          {formatedTimeTable?.property
+            ? formatedTimeTable.property[
+                dayOfWeek.substring(
+                  0,
+                  3
+                ) as keyof typeof formatedTimeTable.property
+              ]
+            : ''}
+        </CardBody>
+      </Card>
+      <Button label="編集する" />
+    </PageMain>
   )
 }
+
+export const HomePage: VFC = () => (
+  <VStack>
+    <HomePageHeader />
+    <Box width="100%" height="40px" />
+    <HomePageMain />
+    <Box width="100%" height="40px" />
+  </VStack>
+)
