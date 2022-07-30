@@ -66,7 +66,7 @@ export const convertTimetableDataFormatForFrontend = (
 }
 
 const propertyFormat = ({ mon, tue, wed, thu, fri, sat }: Property) =>
-  [mon, tue, wed, thu, fri, sat].join(',')
+  [mon, tue, wed, thu, fri, sat, ''].join(',')
 
 export const convertTimetableDataFormatForBackend = (
   timetable: TimeTableFrontend
