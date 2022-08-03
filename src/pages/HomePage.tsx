@@ -1,5 +1,5 @@
 import { VFC } from 'react'
-import { Box, Container, HStack, Spacer, VStack } from '@chakra-ui/react'
+import { Box, HStack, VStack } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { useLiffProfile } from '../hooks/useLiffProfile'
 import { useLiffObject } from '../provider/LiffProvider'
