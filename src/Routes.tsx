@@ -16,7 +16,7 @@ export const Routes: FC = () => {
       element: <HomePage />,
     },
     {
-      path: 'timetable-editor',
+      path: 'editor',
       element: <>タイムテーブルを編集するお</>,
     },
     {
