@@ -5,6 +5,7 @@ import App from './App'
 import './index.css'
 import { LiffProvider } from './provider/LiffProvider'
 import LiffCheck from './LiffCheck'
+import { Routes } from './Routes'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <LiffProvider mock liffId="aaa">
         <App />
         <LiffCheck />
+        <Routes />
       </LiffProvider>
     </ChakraProvider>
   </React.StrictMode>
